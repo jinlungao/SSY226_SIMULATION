@@ -1,33 +1,40 @@
-# NERO 桌面仿真
+# NERO Tabletop Simulation
 
-打开 Assets/NeroTabletop.unity。原始 NeroSimulation.unity 保留。
+Open `Assets/NeroTabletop.unity`. The original `NeroSimulation.unity` scene is retained.
 
-## 已搭建
-- 1.4 m × 1.0 m 实验桌，桌面高度 0.74 m；静态桌面与桌腿碰撞体。
-- NERO 底座位于 (-0.45, 0.74, 0)，根 ArticulationBody 固定。
-- 红、蓝两块边长 5 cm 的方块，每块 80 g，具有重力、摩擦和连续碰撞检测。
-- 白色、黄色两个开口托盘；底面和四面墙分别建立碰撞体。
-- Main Camera 用于整体预览。
-- Observation Camera - RGB 用于俯视观察，输出到 Assets/ObservationRGB.renderTexture，分辨率 640×480。
-- 灯光、地板和材质。
-- 运行时左上角 Reset blocks 按钮重置两块物体的位置、旋转和速度。
+## Included Setup
+- A 1.4 m × 1.0 m workbench with a tabletop height of 0.74 m, with static colliders for the tabletop and legs.
+- The NERO base is positioned at (-0.45, 0.74, 0), with its root ArticulationBody fixed.
+- Two red and blue cubes, each 5 cm wide and weighing 80 g, with gravity, friction, and continuous collision detection enabled.
+- Two open trays, one white and one yellow, with separate colliders for the bottom and each of the four walls.
+- Main Camera provides an overview of the scene.
+- Observation Camera - RGB provides a top-down view and renders to `Assets/ObservationRGB.renderTexture` at 640 × 480 resolution.
+- Lighting, a floor, and materials.
+- A Reset blocks button in the upper-left corner during Play mode resets the position, rotation, and velocity of both cubes.
 
-## 操作
-1. 打开场景，点击 Play 查看仿真。
-2. 在 Hierarchy 展开 Workspace，选择 Table、Movable Blocks 或托盘调整位置。
-3. 在 Project 选择 ObservationRGB.renderTexture 查看虚拟相机预览。
-4. 菜单 NERO > Verify Physics (5 seconds) 可运行基础物理检查；运行结束自动停止。
-5. Verification/overview.png 与 observation.png 是相机输出样例。
+## Instructions
+1. Open the scene and click Play to view the simulation.
+2. Expand Workspace in the Hierarchy, then select Table, Movable Blocks, or a tray to adjust its position.
+3. Select `ObservationRGB.renderTexture` in the Project window to preview the virtual camera output.
+4. Select NERO > Verify Physics (5 seconds) to run a basic physics check. Play mode stops automatically when the check finishes.
+5. `Verification/overview.png` and `Verification/observation.png` contain sample camera outputs.
 
-## 当前范围
-机械臂使用初始关节姿态保持，原导入器键盘 Controller 暂停使用。
-NeroHoldPose 在开始运行时设置初始目标；转动关节采用 Target 驱动，便于先完成环境搭建。
-为了避免导入的凸碰撞体在关节处互相挤压，机器人内部碰撞暂时关闭；与桌面、物块的碰撞仍然开启。
-这还不是经过硬件标定的动力学模型。后续接入控制器时需调试驱动参数，并恢复、验证所需的自碰撞检测。
-尚未加入逆运动学、自动抓取、ROS 消息发布或 VLM。固定点位的完整可达性仍需控制接入后验证。
-Reset blocks 仅重置方块；机械臂可通过停止再运行恢复初始状态。
+## Current Scope
+The robot arm holds its initial joint configuration. The keyboard Controller provided by the original importer is currently disabled.
 
-## 验证
-已完成实际 Play 模式 5 秒检查：方块落在桌面并停止、机器人底座固定、所有可动关节保持目标姿态。
-验证记录：Verification/physics-check.txt。
-已补齐 Unity Test Framework 依赖，场景构建脚本已成功编译执行。
+NeroHoldPose sets the initial targets when Play mode starts. Revolute joints use Target drives to support the initial environment setup.
+
+Robot self-collision is currently disabled to prevent the imported convex colliders from pushing against each other at the joints. Collisions with the table and blocks remain enabled.
+
+This dynamics model has not been calibrated against physical hardware. When integrating a controller, tune the drive parameters and restore and validate the required self-collision detection.
+
+Inverse kinematics, automatic grasping, ROS message publishing, and VLM integration have not yet been added. Full reachability of the fixed target positions still needs to be verified after controller integration.
+
+Reset blocks resets only the cubes. Stop and restart Play mode to restore the robot arm to its initial state.
+
+## Verification
+An actual five-second Play mode check has been completed: the cubes settle on the tabletop, the robot base remains fixed, and all movable joints hold their target poses.
+
+Verification log: `Verification/physics-check.txt`.
+
+The Unity Test Framework dependency has been added, and the scene-building script has compiled and executed successfully.
