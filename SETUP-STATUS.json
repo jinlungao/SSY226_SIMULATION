@@ -1,0 +1,11 @@
+{
+  "editor": "6000.3.25f1",
+  "editor_changeset": "e1dba0a9aba4",
+  "packages": {
+    "URDF-Importer": "v0.5.2 (90f353e4352aae4df52fa2c05e49b804631d2a63)",
+    "ROS-TCP-Connector": "v0.7.1 (3288e188a2d6ac2c623cde090ae53401307eddeb)"
+  },
+  "model_commit": "983788b58d7eae76511177f768d85877534917fe",
+  "status": "NeroTabletop scene generated and saved. Five-second Play Mode physics check passed. Initial-pose Target drives; robot self-collisions disabled. Automatic manipulation and ROS/VLM integration pending.",
+  "scene": "Assets/NeroTabletop.unity"
+}

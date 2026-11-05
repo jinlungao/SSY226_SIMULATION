@@ -1,0 +1,11 @@
+Initial articulation coordinates
+link1: initial=0, target=0
+link2: initial=0, target=0
+link3: initial=0, target=0
+link4: initial=0, target=0
+link5: initial=0, target=0
+link6: initial=0, target=0
+link7: initial=0, target=0
+gripper_link2: initial=0, target=0
+gripper_link1: initial=0, target=0
+gripper_link: initial=0, target=0

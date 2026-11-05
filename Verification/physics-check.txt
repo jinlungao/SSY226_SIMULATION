@@ -1,0 +1,16 @@
+Physics run for 5 seconds
+Red Cube: (-0.0800, 0.7650, -0.2300), speed=0.0000, settled=True
+Blue Cube: (0.1200, 0.7650, -0.2300), speed=0.0000, settled=True
+Robot root: (-0.4500, 0.7400, 0.0000)
+Fixed base: True
+link1: actual=0.000, target=0.000, held=True, speed=0.000
+link2: actual=0.000, target=0.000, held=True, speed=0.000
+link3: actual=0.000, target=0.000, held=True, speed=0.000
+link4: actual=0.000, target=0.000, held=True, speed=0.000
+link5: actual=0.000, target=0.000, held=True, speed=0.000
+link6: actual=0.000, target=0.000, held=True, speed=0.000
+link7: actual=0.000, target=0.000, held=True, speed=0.000
+gripper_link2: actual=0.000, target=0.000, held=True, speed=0.000
+gripper_link1: actual=0.000, target=0.000, held=True, speed=0.000
+gripper_link: actual=0.000, target=0.000, held=True, speed=0.000
+PASS=True

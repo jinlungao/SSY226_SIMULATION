@@ -1,0 +1,3 @@
+Built table, 2 dynamic cubes, 2 open trays, fixed robot, overview + RGB camera.
+Articulation bodies: 13
+Fixed roots: 1
