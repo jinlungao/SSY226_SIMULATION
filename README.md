@@ -1,6 +1,6 @@
 # SSY226_SIMULATION
 
-Status: prepared project; Unity Editor compilation and robot import are not yet verified.
+The tabletop scene supports VLM localization and simulated pick-and-place. See the [tabletop instructions](TABLETOP使用说明.md).
 
 ## Install and open
 
@@ -33,15 +33,18 @@ Status: prepared project; Unity Editor compilation and robot import are not yet 
 
 The sibling NeroROS2/src/ROS-TCP-Endpoint folder contains the official main-ros2
 endpoint source. It still needs to be built inside an installed ROS 2 environment.
-The sibling DemoStitching folder contains the official motion-learning source.
-Its Python dependencies have not been installed or tested yet.
+For automatic pick-and-place, clone [DemoStitching](https://github.com/KilianFt/DemoStitching)
+beside this Unity project and check out revision `c66bf2882622d5a9a167c562ae3c0b1ac76464c4`.
+Copy the contents of `DemoStitchingIntegration/` into the DemoStitching clone.
+Install the upstream Python dependencies (the local integration was tested with Python 3.12),
+then run `python serve_nero_plan.py` in that environment from the DemoStitching folder.
+The planner fits the six bundled demonstrations and serves Unity at
+`http://127.0.0.1:8766/plan`. Start local Ollama as described in the tabletop
+instructions, then use **Locate and execute pick-and-place** in the Game view.
 
 For ROS 2 communication, configure Robotics > ROS Settings to use ROS 2 and point
 at the endpoint machine's address. Unity's Connector alone does not install ROS 2.
 Use a fixed simulation timestep and explicit conversions between Unity and ROS coordinates.
-
-A VLM and VLA baseline are not installed yet. Their selection depends on available
-GPU memory and the intended inference setup; they are not required to import or move the robot.
 
 ## Sources
 

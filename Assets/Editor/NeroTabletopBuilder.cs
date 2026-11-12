@@ -162,11 +162,12 @@ public static class NeroTabletopBuilder
         Box("Front support", table.transform, new Vector3(0, .59f, -.4f), new Vector3(1.20f, .06f, .035f), steel);
         Box("Back support", table.transform, new Vector3(0, .59f, .4f), new Vector3(1.20f, .06f, .035f), steel);
         Tray("Tray A - White", new Vector3(.08f, .74f, .24f), white, setup.transform);
-        Tray("Tray B - Yellow", new Vector3(.36f, .74f, .24f), yellow, setup.transform);
+        Tray("Tray B - Yellow", new Vector3(-.18f, .74f, .24f), yellow, setup.transform);
+        Tray("Tray C - Blue", new Vector3(-.44f, .74f, .24f), blue, setup.transform);
         var blocks = new GameObject("Movable Blocks");
         blocks.transform.SetParent(setup.transform, false);
         var r = Box("Red Cube", blocks.transform, new Vector3(-.08f, .767f, -.23f), Vector3.one * .05f, red).AddComponent<Rigidbody>();
-        var b = Box("Blue Cube", blocks.transform, new Vector3(.12f, .767f, -.23f), Vector3.one * .05f, blue).AddComponent<Rigidbody>();
+        var b = Box("Blue Cube", blocks.transform, new Vector3(-.10f, .767f, -.32f), Vector3.one * .05f, blue).AddComponent<Rigidbody>();
         var grip = new PhysicsMaterial("Block friction") { dynamicFriction = .65f, staticFriction = .75f, bounciness = 0 };
         AssetDatabase.CreateAsset(grip, "Assets/TabletopMaterials/Block friction.physicMaterial");
         foreach (var rb in new[] { r, b })
@@ -203,6 +204,12 @@ public static class NeroTabletopBuilder
         AssetDatabase.CreateAsset(texture, "Assets/ObservationRGB.renderTexture");
         rgb.targetTexture = texture;
         rgb.depth = -1;
+        var vlm = new SerializedObject(vision.AddComponent<NeroVlmClient>());
+        vlm.FindProperty("observationCamera").objectReferenceValue = rgb;
+        vlm.ApplyModifiedPropertiesWithoutUndo();
+        var projector = new SerializedObject(vision.AddComponent<NeroPointProjector>());
+        projector.FindProperty("robotBase").objectReferenceValue = robot.transform.Find("world/base_link");
+        projector.ApplyModifiedPropertiesWithoutUndo();
         var light = new GameObject("Key Light").AddComponent<Light>();
         light.type = LightType.Directional;
         light.intensity = 1.2f;
